@@ -1,0 +1,98 @@
+body {
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 16px;
+    background-color: #EBF2FA;
+    color: #898989;
+    margin: 0;
+    height: 100vh;
+}
+
+header {
+    background-color: #fff;
+    padding: 25px 100px;
+    margin: 0 25px 0 0;
+    border-width: 0 1px 1px 0; 
+    border-radius: 0 0 25px 0;
+    border-style: solid;
+    border-color: black;
+}
+
+main {
+    height: 100%;
+    padding-right: 25px;
+}
+
+h1 {
+    color: #EEB902;
+    font-family: 'Grenze Gotisch', 'serif';
+    font-size: 56px;
+    margin: 0;
+    font-weight: normal;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+button {
+    padding: 10px 30px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: 0;
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 16px;
+}
+
+button:hover, button:active {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.viz-container{
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    padding: 0 100px;
+}
+
+.xy {
+    cursor: default;
+}
+
+.graph {
+    width: 100%;
+    height: 100%;
+}
+
+.panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 25px 100px;
+    margin: 0 25px 0 0;
+    border-width: 1px 1px 0 0; 
+    border-radius: 0 25px 0 0;
+    border-style: solid;
+    border-color: black;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+#mode {
+    font-weight: bold;
+}
