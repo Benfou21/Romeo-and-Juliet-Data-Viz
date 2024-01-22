@@ -48,7 +48,7 @@ def create_template():
     # TODO : Define a theme as defined above
     template = go.layout.Template()
 
-    # Configuration de la mise en page
+    
     template.layout = go.Layout(
         font=dict(family=THEME['font_family'], color=THEME['font_color']),
         paper_bgcolor=THEME['background_color'],
@@ -62,6 +62,6 @@ def create_template():
         colorway=THEME['bar_colors']
     )
 
-    # Ajout du modèle aux modèles disponibles dans Plotly
+    # Save
     pio.templates["custom"] = template
     

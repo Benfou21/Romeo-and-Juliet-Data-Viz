@@ -72,12 +72,12 @@ def replace_others(my_df):
     # Join
     top_players_df = my_df[my_df['Player'].isin(top_players)]
     final_df = pd.concat([top_players_df, others_grouped], ignore_index=True)
-    final_df = final_df.drop(columns=["TotalLines","PlayerPercent"])
+    final_df = final_df.drop(columns=["TotalLines"])
     
     # Sort
     final_df.sort_values(by=['Act', 'Player'], ascending=[True, True], inplace=True)
     final_df.reset_index(drop=True, inplace=True)
-    print(final_df)
+    
     return final_df
 
 

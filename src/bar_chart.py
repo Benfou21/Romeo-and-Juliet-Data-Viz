@@ -22,9 +22,7 @@ def init_figure():
     
     fig = go.Figure()
     
-    
-    
-   
+
     fig.update_layout(template="simple_white")
 
     custom_template = pio.templates['custom']
@@ -32,13 +30,18 @@ def init_figure():
         title={
             'text': 'Lines per Act',
             'xanchor': 'left',
-            'yanchor': 'top'
+            'x' : 0,
+            'yanchor': 'top',
+            'font' : {
+                'size' : 24,
+            }
+            
         },
-        font=custom_template.layout.font,  # Appliquez la police personnalisée
-        paper_bgcolor=custom_template.layout.paper_bgcolor,  # Appliquez la couleur de fond personnalisée
-        plot_bgcolor=custom_template.layout.plot_bgcolor,  # Appliquez la couleur de fond du tracé personnalisée
-        hoverlabel=custom_template.layout.hoverlabel,  # Appliquez les étiquettes au survol personnalisées
-        colorway=custom_template.layout.colorway,  # Appliquez la palette de couleurs personnalisée
+        font=custom_template.layout.font,  
+        paper_bgcolor=custom_template.layout.paper_bgcolor,  
+        plot_bgcolor=custom_template.layout.plot_bgcolor,  
+        hoverlabel=custom_template.layout.hoverlabel,  
+        colorway=custom_template.layout.colorway,  
         dragmode=False,
         barmode='relative'
     )
@@ -62,18 +65,21 @@ def draw(fig, data, mode):
     fig = go.Figure(fig)
      # TODO : Update the figure's data according to the selected mode
     
-    column_name = "LineCount" if mode == "Count" else "PercentCount"
+    column_name = "LineCount" if mode == "Count" else "PlayerPercent"
     
     fig = update_y_axis(fig,mode)
     
     fig.data =[]
     color_map = {player: THEME['bar_colors'][i % len(THEME['bar_colors'])] for i, player in enumerate(data['Player'].unique())}
     
-    # Create a bar for each player using the color map
+    
+    
     for player in data['Player'].unique():
         player_data = data[data['Player'] == player]
+        player_data['Act'] = player_data['Act'].apply(lambda x: f'Act {x}')
+
         fig.add_trace(go.Bar(
-            x=player_data['Act'],
+            x= player_data['Act'],
             y=player_data[column_name], 
             name=player,
             marker=dict(color=color_map[player])  ,
