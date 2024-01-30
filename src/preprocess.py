@@ -27,11 +27,10 @@ def summarize_lines(my_df):
     
     counts = my_df.groupby(['Act','Player']).size().reset_index(name='LineCount')
     
-    total_lines = counts.groupby(['Act']).sum().reset_index()
-    total_lines = total_lines.rename(columns={'LineCount': 'TotalLines'})
-    new_df = pd.merge(counts, total_lines, on=['Act'])
+    tot_lines = counts.groupby(['Act']).sum().reset_index()
+    tot_lines = tot_lines.rename(columns={'LineCount': 'TotalLines'})
+    new_df = pd.merge(counts, tot_lines, on=['Act'])
 
-    # Calculer le pourcentage des lignes pour chaque joueur
     new_df['PlayerPercent'] = (new_df['LineCount'] / new_df['TotalLines']) * 100
     
     return new_df
@@ -71,14 +70,14 @@ def replace_others(my_df):
 
     # Join
     top_players_df = my_df[my_df['Player'].isin(top_players)]
-    final_df = pd.concat([top_players_df, others_grouped], ignore_index=True)
-    final_df = final_df.drop(columns=["TotalLines"])
+    new_df = pd.concat([top_players_df, others_grouped], ignore_index=True)
+    new_df = new_df.drop(columns=["TotalLines"])
     
     # Sort
-    final_df.sort_values(by=['Act', 'Player'], ascending=[True, True], inplace=True)
-    final_df.reset_index(drop=True, inplace=True)
+    new_df.sort_values(by=['Act', 'Player'], ascending=[True, True], inplace=True)
+    new_df.reset_index(drop=True, inplace=True)
     
-    return final_df
+    return new_df
 
 
 def clean_names(my_df):

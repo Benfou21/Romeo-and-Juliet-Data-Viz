@@ -62,6 +62,6 @@ def create_template():
         colorway=THEME['bar_colors']
     )
 
-    # Save
+    
     pio.templates["custom"] = template
     
