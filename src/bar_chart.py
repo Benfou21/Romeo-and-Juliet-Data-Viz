@@ -41,7 +41,6 @@ def init_figure():
         paper_bgcolor=custom_template.layout.paper_bgcolor,  
         plot_bgcolor=custom_template.layout.plot_bgcolor,  
         hoverlabel=custom_template.layout.hoverlabel,  
-        colorway=custom_template.layout.colorway,  
         dragmode=False,
         barmode='relative'
     )

@@ -59,7 +59,6 @@ def create_template():
             bgcolor=THEME['label_background_color']
         ),
         modebar=dict(color=THEME['font_color']),
-        colorway=THEME['bar_colors']
     )
 
     

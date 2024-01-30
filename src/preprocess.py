@@ -61,19 +61,19 @@ def replace_others(my_df):
     '''
     # TODO : Replace players in each act not in the top 5 by a
     
-    top_players = my_df.groupby('Player')['LineCount'].sum().nlargest(5).index
+    largest_players_index = my_df.groupby('Player')['LineCount'].sum().nlargest(5).index
+    top_players_df = my_df[my_df['Player'].isin(largest_players_index)] #Keep only the largest playerss
     
-    # Other
-    other_players = my_df[~my_df['Player'].isin(top_players)]
-    others_grouped = other_players.groupby('Act').agg({'LineCount': 'sum', 'PlayerPercent': 'sum'}).reset_index()
-    others_grouped['Player'] = 'OTHER'
+    other_df = my_df[~my_df['Player'].isin(largest_players_index)] #Remove the largest players
+    others_df = other_df.groupby('Act').agg({'LineCount': 'sum', 'PlayerPercent': 'sum'}).reset_index()   
+    others_df['Player'] = 'OTHER'
+    
 
-    # Join
-    top_players_df = my_df[my_df['Player'].isin(top_players)]
-    new_df = pd.concat([top_players_df, others_grouped], ignore_index=True)
+    new_df = pd.concat([top_players_df, others_df], ignore_index=True)
     new_df = new_df.drop(columns=["TotalLines"])
     
-    # Sort
+    
+    # To order the colors
     new_df.sort_values(by=['Act', 'Player'], ascending=[True, True], inplace=True)
     new_df.reset_index(drop=True, inplace=True)
     
