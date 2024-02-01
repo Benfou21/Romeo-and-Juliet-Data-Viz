@@ -60,29 +60,34 @@ def draw(fig, data, mode):
         Returns:
             fig: The figure comprising the drawn bar chart
     '''
-   
+    # TODO : Update the figure's data according to the selected mode
+    
     fig = go.Figure(fig)
-     # TODO : Update the figure's data according to the selected mode
+    
     
     column_name = "LineCount" if mode == "Count" else "PlayerPercent"
     
+    #Call the function to upadte y axis
     fig = update_y_axis(fig,mode)
     
+    #Reset chart to not add bars on top of previous ones 
     fig.data =[]
+    
+    #Loop to give each player a unique color from the Theme
     color_map = {player: THEME['bar_colors'][i % len(THEME['bar_colors'])] for i, player in enumerate(data['Player'].unique())}
     
     
-    
+    #Loop on every player to update the chart
     for player in data['Player'].unique():
         player_data = data[data['Player'] == player]
-        player_data['Act'] = player_data['Act'].apply(lambda x: f'Act {x}')
+        player_data['Act'] = player_data['Act'].apply(lambda x: f'Act {x}') #To add the "Act" on x axis
         
         fig.add_trace(go.Bar(
             x= player_data['Act'],
             y=player_data[column_name], 
             name=player,
             marker=dict(color=color_map[player])  ,
-            hovertemplate= get_hover_template(player,mode)
+            hovertemplate= get_hover_template(player,mode) #Give the hover
         ))
      
     return fig

@@ -48,7 +48,7 @@ def create_template():
     # TODO : Define a theme as defined above
     template = go.layout.Template()
 
-    
+    #Defining the Template
     template.layout = go.Layout(
         font=dict(family=THEME['font_family'], color=THEME['font_color']),
         paper_bgcolor=THEME['background_color'],
@@ -61,6 +61,6 @@ def create_template():
         modebar=dict(color=THEME['font_color']),
     )
 
-    
+    #Add to templates
     pio.templates["custom"] = template
     

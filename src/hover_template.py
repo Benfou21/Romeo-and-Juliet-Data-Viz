@@ -27,12 +27,13 @@ def get_hover_template(name, mode):
     '''
     # TODO: Generate and return the over template
     
-   
+    # Data infos 
     if mode == 'Count':
         ligne_info = f"<br><br><i>%{{y}} lignes</i>"
     else :
         ligne_info = f"<br><br><i>%{{y:.2f}}% des lignes</i>"
     
+    #Text + style
     hover_template = f'<span style="font-family: Grenze Gotish; font-size: 24px; color: black;">{name}{ligne_info}</span>'
     
     return hover_template  + "<extra></extra>" # To get rid of the default behavior
