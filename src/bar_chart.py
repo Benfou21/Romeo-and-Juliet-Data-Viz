@@ -76,7 +76,7 @@ def draw(fig, data, mode):
     for player in data['Player'].unique():
         player_data = data[data['Player'] == player]
         player_data['Act'] = player_data['Act'].apply(lambda x: f'Act {x}')
-
+        
         fig.add_trace(go.Bar(
             x= player_data['Act'],
             y=player_data[column_name], 
